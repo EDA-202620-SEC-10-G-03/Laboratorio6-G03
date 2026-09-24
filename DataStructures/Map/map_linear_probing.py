@@ -1,21 +1,35 @@
+def new_map():
+
+def put(my_map, key, value):
+
+    hash_value = mf.hash_value(my_map, key)
+
+    found, pos = find_slot(my_map, key, hash_value)
+
+    if found:
+        entry = lt.get_element(my_map["table"], pos)
+        me.set_value(entry, value)
+
+    else:
+        entry = me.new_map_entry(key, value)
+        lt.change_info(my_map["table"], pos, entry)
+
+        my_map["size"] += 1
+        my_map["current_factor"] = my_map["size"] / my_map["capacity"]
+
+        if my_map["current_factor"] > my_map["limit_factor"]:
+            my_map = rehash(my_map)
+
+    return my_map
 
 
-def new_map(num_elements, load_factor, prime=109345121):
-    
-    capacitiy = mp.next_prime(num_elements/load_factor)
-    scale = r.randint(1, prime-1)
-    shitf = r.randint(1, prime-1)
-    table = 
+def contains(my_map, key):
 
-    
-    
+    hash_value = mf.hash_value(my_map, key)
 
+    found, pos = find_slot(my_map, key, hash_value)
 
-
-def put():
-
-
-def contains():
+    return found
     
 
 def get():
