@@ -34,6 +34,8 @@ import tracemalloc
 # TODO Realice la importación de ArrayList como estructura de datos auxiliar para sus requerimientos
 # TODO Realice la importación del mapa separate chaining
 
+# TODO Importar la librería para el manejo de mapas
+from DataStructures.Map import map_linear_probing as lp
 
 data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/GoodReads/'
 
