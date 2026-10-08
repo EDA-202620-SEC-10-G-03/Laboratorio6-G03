@@ -74,12 +74,16 @@ def delete_element(my_list, pos):
         raise Exception('IndexError: list index out of range')
     else:
         if pos == 0:
-            my_list["first"] = my_list ["first"]["next"]
+            my_list["first"] = my_list["first"]["next"]
+            if my_list["first"] is None:          # NUEVO
+                my_list["last"] = None            # NUEVO
         else:
             anterior = my_list["first"]
-            for i in range(pos-1):
+            for i in range(pos - 1):
                 anterior = anterior["next"]
             anterior["next"] = anterior["next"]["next"]
+            if anterior["next"] is None:          # NUEVO
+                my_list["last"] = anterior        # NUEVO
         my_list["size"] = my_list["size"] - 1
     return my_list
 

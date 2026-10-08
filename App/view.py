@@ -27,8 +27,9 @@
 import sys
 import App.logic as logic
 # TODO Realice la importación del mapa linear probing
+from DataStructures.Map import map_linear_probing as lp
 # TODO Realice la importación de ArrayList como estructura de datos auxiliar para sus requerimientos
-
+from DataStructures.List import array_list as al
 
 """
 La vista se encarga de la interacción con el usuario
@@ -48,13 +49,11 @@ def new_logic():
     return control
 
 # TODO Incluir las mediciones de tiempo y uso de memoria en la ejecución de la consulta.
-def load_data(control):
+def load_data(control, memflag=True):
     """
     Solicita a la controlador que cargue los datos
     """
-    books, authors, tags, book_tags = logic.load_data(control)
-    return books, authors, tags, book_tags
-
+    return logic.load_data(control, memflag)
 #  -------------------------------------------------------------
 # Funciones para la correcta impresión de los datos
 #  -------------------------------------------------------------
@@ -150,13 +149,18 @@ def main():
         inputs = input("Seleccione una opción para continuar\n")
         # TODO agregar tiempo de ejecución y consumo de memoria
         if int(inputs[0]) == 1:
+            mem = input("¿Desea medir la memoria? (s/n): ")
+            memflag = mem in ("s", "S", "si", "Si", "SI")
             print("Cargando información de los archivos ....")
-            bk, at, tg, bktg = load_data(control)
+            resultado = load_data(control, memflag)
+            bk, at, tg, bktg, tiempo = resultado[0], resultado[1], resultado[2], resultado[3], resultado[4]
             print('Libros cargados: ' + str(bk))
             print('Autores cargados: ' + str(at))
             print('Géneros cargados: ' + str(tg))
-            print('Asociación de Géneros a Libros cargados: ' +
-                  str(bktg))
+            print('Asociación de Géneros a Libros cargados: ' + str(bktg))
+            print(f"Tiempo de ejecución: {tiempo:.2f} ms")
+            if memflag:
+                print(f"Memoria utilizada: {resultado[5]:.2f} kB")
 
         elif int(inputs[0]) == 2:
             number = input("Ingrese el id del libro (good_read_book_id) que desea buscar: ")

@@ -71,6 +71,35 @@ def get(my_map, key):
         return valor    
 
 
+def is_empty(my_map):
+    if my_map["size"] == 0:
+        return True
+    else:
+        return False
+
+
+def key_set(my_map):
+    lista = al.new_list()
+    for i in range(my_map["capacity"]):
+        if not is_available(my_map["table"], i):
+            entry = al.get_element(my_map["table"], i)
+            al.add_last(lista , me.get_key(entry))
+            
+    return lista
+
+
+def value_set(my_map):
+    lista = al.new_list()
+    for i in range(my_map["capacity"]):
+        if not is_available(my_map["table"], i):
+            entry = al.get_element(my_map["table"], i)
+            al.add_last(lista, me.get_value(entry))
+            
+    return lista
+            
+    
+
+
 def remove(my_map, key):
     posicion = mf.hash_value(my_map, key)
     a, b = find_slot(my_map, key, posicion)
