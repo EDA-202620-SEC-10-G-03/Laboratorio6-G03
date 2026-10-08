@@ -39,6 +39,7 @@ from DataStructures.Map import map_separate_chaining as sp
 
 data_dir = os.path.dirname(os.path.realpath('__file__')) + '/Data/GoodReads/'
 
+#3 cambios
 def new_logic():
     """
     Inicializa el catálogo de libros. Crea una lista vacía para guardar
